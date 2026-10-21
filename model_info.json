@@ -1,0 +1,17 @@
+{
+    "model_name": "Ridge",
+    "model_type": "Ridge",
+    "parameters": {
+        "alpha": 10.0,
+        "random_state": 42
+    },
+    "needs_scaling": true,
+    "test_metrics": {
+        "MAE": 0.484,
+        "RMSE": 0.8317,
+        "QLIKE": 0.9849
+    },
+    "selection_reasoning": "Among deployable ML models, Ridge (QLIKE: 0.9849) and XGBoost (QLIKE: 1.3450) showed no statistically significant difference in predictive accuracy (Diebold-Mariano p-value = 0.2946 > 0.05). Under the decision rule, the more interpretable and stable model, Ridge, was selected for deployment.",
+    "best_overall_model": "Baseline (VIX scaled)",
+    "best_overall_qlike": 0.8456
+}

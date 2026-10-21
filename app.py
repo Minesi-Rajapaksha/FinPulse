@@ -1,3 +1,4 @@
+import json
 import streamlit as st
 import yfinance as yf
 import pandas as pd
@@ -24,14 +25,17 @@ st.set_page_config(
 @st.cache_resource
 def load_model():
 
-    model = joblib.load("ridge_model.pkl")
+    model = joblib.load("best_model.pkl")
     scaler = joblib.load("scaler.pkl")
     feature_cols = joblib.load("feature_cols.pkl")
+    
+    with open("model_info.json", "r") as f:
+        model_info = json.load(f)
 
-    return model, scaler, feature_cols
+    return model, scaler, feature_cols, model_info
 
 
-model, scaler, feature_cols = load_model()
+model, scaler, feature_cols, model_info = load_model()
 
 
 # =====================================================
@@ -68,6 +72,13 @@ def get_market_data():
         vix_close,
         how="left"
     )
+
+    # Drop the last row if it is a partial candle for the current trading day
+    if len(data) > 0:
+        latest_bar_date = pd.to_datetime(data.index[-1]).date()
+        today = pd.Timestamp.now().date()
+        if latest_bar_date >= today:
+            data = data.iloc[:-1].copy()
 
     return data
 
@@ -186,16 +197,20 @@ latest_features = features.iloc[[-1]]
 # t = latest trading day with all required features
 latest_date = latest_features.index[-1]
 
-latest_scaled = scaler.transform(
-    latest_features
-)
+# Apply scaler only if the selected model requires scaled inputs (Ridge and SVR do, XGBoost does not)
+needs_scaling = model_info.get("needs_scaling", True)
+
+if needs_scaling:
+    latest_input = scaler.transform(latest_features)
+else:
+    latest_input = latest_features
 
 prediction = model.predict(
-    latest_scaled
+    latest_input
 )[0]
 
 # Volatility cannot be negative
-prediction = max(prediction, 0)
+prediction = max(float(prediction), 0.0)
 
 
 # =====================================================
@@ -259,7 +274,7 @@ with st.sidebar:
     st.write("SPY")
 
     st.markdown("**Model**")
-    st.write("Ridge Regression")
+    st.write(model_info.get("model_name", "Ridge Regression"))
 
     st.markdown("**Forecast Horizon**")
     st.write("Next trading session")
