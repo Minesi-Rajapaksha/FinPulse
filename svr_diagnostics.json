@@ -1,0 +1,17 @@
+{
+    "min_prediction": 0.0783,
+    "p01": 0.189,
+    "p05": 0.236,
+    "p10": 0.2781,
+    "p25": 0.3655,
+    "median": 0.5004,
+    "days_below_0_1": 1,
+    "share_below_0_1_pct": 0.4,
+    "worst_day_date": "2025-04-03",
+    "worst_day_pred": 0.1294,
+    "worst_day_target": 6.0327,
+    "worst_day_qlike": 1380.729,
+    "worst_day_share_pct": 81.39,
+    "total_qlike": 6.868,
+    "explanation": "Approximately 81% of SVR's total test QLIKE loss stems from a single forecast origin on 2025-04-03 (where SVR predicted 0.129 vs an actual next-day move of 6.03%). Across the entire 247-day test set, only 1 prediction fell below 0.10%. Extrapolation failure outside the training distribution remains a plausible hypothesis, though not definitively proven."
+}

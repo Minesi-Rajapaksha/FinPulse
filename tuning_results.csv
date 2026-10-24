@@ -1,0 +1,51 @@
+Model,Parameters,Val_MAE,Is_Selected
+Ridge,alpha=0.01,0.393841,False
+Ridge,alpha=0.1,0.393839,False
+Ridge,alpha=1,0.393822,False
+Ridge,alpha=10,0.393676,True
+Ridge,alpha=100,0.395014,False
+SVR,"C=0.1, gamma=scale, epsilon=0.01",0.37357,False
+SVR,"C=0.1, gamma=scale, epsilon=0.05",0.373173,False
+SVR,"C=0.1, gamma=scale, epsilon=0.1",0.374002,False
+SVR,"C=0.1, gamma=0.01, epsilon=0.01",0.377943,False
+SVR,"C=0.1, gamma=0.01, epsilon=0.05",0.378717,False
+SVR,"C=0.1, gamma=0.01, epsilon=0.1",0.378389,False
+SVR,"C=0.1, gamma=0.1, epsilon=0.01",0.377137,False
+SVR,"C=0.1, gamma=0.1, epsilon=0.05",0.376436,False
+SVR,"C=0.1, gamma=0.1, epsilon=0.1",0.376996,False
+SVR,"C=1, gamma=scale, epsilon=0.01",0.381541,False
+SVR,"C=1, gamma=scale, epsilon=0.05",0.380688,False
+SVR,"C=1, gamma=scale, epsilon=0.1",0.378409,False
+SVR,"C=1, gamma=0.01, epsilon=0.01",0.373139,True
+SVR,"C=1, gamma=0.01, epsilon=0.05",0.373282,False
+SVR,"C=1, gamma=0.01, epsilon=0.1",0.373809,False
+SVR,"C=1, gamma=0.1, epsilon=0.01",0.380243,False
+SVR,"C=1, gamma=0.1, epsilon=0.05",0.377787,False
+SVR,"C=1, gamma=0.1, epsilon=0.1",0.376472,False
+SVR,"C=10, gamma=scale, epsilon=0.01",0.408038,False
+SVR,"C=10, gamma=scale, epsilon=0.05",0.403553,False
+SVR,"C=10, gamma=scale, epsilon=0.1",0.399451,False
+SVR,"C=10, gamma=0.01, epsilon=0.01",0.391394,False
+SVR,"C=10, gamma=0.01, epsilon=0.05",0.389576,False
+SVR,"C=10, gamma=0.01, epsilon=0.1",0.38847,False
+SVR,"C=10, gamma=0.1, epsilon=0.01",0.42302,False
+SVR,"C=10, gamma=0.1, epsilon=0.05",0.422071,False
+SVR,"C=10, gamma=0.1, epsilon=0.1",0.422108,False
+SVR,"C=100, gamma=scale, epsilon=0.01",0.504219,False
+SVR,"C=100, gamma=scale, epsilon=0.05",0.495815,False
+SVR,"C=100, gamma=scale, epsilon=0.1",0.488409,False
+SVR,"C=100, gamma=0.01, epsilon=0.01",0.408551,False
+SVR,"C=100, gamma=0.01, epsilon=0.05",0.406452,False
+SVR,"C=100, gamma=0.01, epsilon=0.1",0.401606,False
+SVR,"C=100, gamma=0.1, epsilon=0.01",0.504011,False
+SVR,"C=100, gamma=0.1, epsilon=0.05",0.494376,False
+SVR,"C=100, gamma=0.1, epsilon=0.1",0.485932,False
+XGBoost,"lr=0.01, depth=2",0.403668,False
+XGBoost,"lr=0.01, depth=3",0.402093,False
+XGBoost,"lr=0.01, depth=4",0.400272,True
+XGBoost,"lr=0.05, depth=2",0.400766,False
+XGBoost,"lr=0.05, depth=3",0.408164,False
+XGBoost,"lr=0.05, depth=4",0.405508,False
+XGBoost,"lr=0.1, depth=2",0.410678,False
+XGBoost,"lr=0.1, depth=3",0.412862,False
+XGBoost,"lr=0.1, depth=4",0.404951,False

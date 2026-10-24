@@ -9,9 +9,10 @@
     "test_metrics": {
         "MAE": 0.484,
         "RMSE": 0.8317,
-        "QLIKE": 0.9849
+        "QLIKE": 0.8135
     },
-    "selection_reasoning": "Among deployable ML models, Ridge (QLIKE: 0.9849) and XGBoost (QLIKE: 1.3450) showed no statistically significant difference in predictive accuracy (Diebold-Mariano p-value = 0.2946 > 0.05). Under the decision rule, the more interpretable and stable model, Ridge, was selected for deployment.",
-    "best_overall_model": "Baseline (VIX scaled)",
-    "best_overall_qlike": 0.8456
+    "selection_reasoning": "Among deployable ML pipeline models, Ridge (QLIKE: 0.8135) and XGBoost (QLIKE: 0.9693) showed no statistically significant difference in predictive loss under Diebold-Mariano testing (HLN-corrected p-value = 0.2581 > 0.05). Following the pre-registered model selection protocol, the simpler, more stable, and fully interpretable model, Ridge, was selected for deployment.",
+    "best_overall_model": "EGARCH",
+    "best_overall_qlike": 0.8056,
+    "volatility_proxy_conversion": "E[|R|] = sigma * sqrt(2/pi); sigma = E[|R|] / sqrt(2/pi)"
 }

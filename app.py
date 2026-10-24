@@ -343,26 +343,36 @@ st.divider()
 
 st.subheader("🔮 Next-Session Volatility Forecast")
 
-f1, f2 = st.columns(2)
+# Model output represents expected absolute return E|R|
+norm_scaling = np.sqrt(2.0 / np.pi)
+sigma_est = prediction / norm_scaling  # sigma = E|R| / sqrt(2/pi)
+var95_pct = 1.6449 * sigma_est
+var95_dollars = latest_price * (var95_pct / 100.0)
+
+f1, f2, f3 = st.columns(3)
 
 f1.metric(
-    "Predicted Movement Magnitude",
+    "Expected Absolute Return E[|R|]",
     f"{prediction:.3f}%"
 )
 
 f2.metric(
-    "Approx. Movement per SPY Share",
-    f"${expected_move_dollars:.2f}"
+    "Estimated Std. Dev. (σ = E[|R|]/√(2/π))",
+    f"{sigma_est:.3f}%"
 )
 
+f3.metric(
+    "95% Parametric VaR (1-Day)",
+    f"±{var95_pct:.2f}% (${var95_dollars:.2f})"
+)
 
 st.info(
-    f"FinPulse estimates that SPY may move by approximately "
-    f"{prediction:.3f}% during the next trading session. "
-    f"At the current SPY price, this represents roughly "
-    f"${expected_move_dollars:.2f} of movement per share. "
-    f"The model predicts movement magnitude — "
-    f"not whether the price will rise or fall."
+    f"**Model Forecast Interpretation:** FinPulse's production model ({model_info.get('model_name', 'Ridge Regression')}) "
+    f"directly predicts next-session expected absolute return: **E[|R_{{t+1}}|] = {prediction:.3f}%** "
+    f"($${expected_move_dollars:.2f} movement per share at current price $${latest_price:.2f}). "
+    f"Under the standard Gaussian distribution r ~ N(0, σ²), this translates to an estimated conditional standard deviation of "
+    f"**σ = {sigma_est:.3f}%** (via σ = E[|R|] / √(2/π)). "
+    f"Under this calibrated variance, the 1-day 95% Value-at-Risk threshold is **{var95_pct:.2f}%** ($${var95_dollars:.2f}/share)."
 )
 
 

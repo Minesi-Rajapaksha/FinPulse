@@ -1,0 +1,7 @@
+Confidence_Level,Expected_Failures,Actual_Failures,Failure_Rate_Pct,Kupiec_LR_POF,Kupiec_p_val,Kupiec_Pass,Christoffersen_LR_Ind,Christoffersen_p_val,Independence_Pass,Conditional_Coverage_p_val,Model
+95%,12.4,18,7.29,2.3989,0.1214,True,0.364,0.5463,True,0.2512,Ridge
+99%,2.5,7,2.83,5.6081,0.0179,False,1.8246,0.1768,True,0.0243,Ridge
+95%,12.4,18,7.29,2.3989,0.1214,True,1.9383,0.1639,True,0.1143,EGARCH
+99%,2.5,7,2.83,5.6081,0.0179,False,1.8246,0.1768,True,0.0243,EGARCH
+95%,12.4,9,3.64,1.0518,0.3051,True,4.5766,0.0324,False,0.06,Baseline (VIX)
+99%,2.5,5,2.02,2.0185,0.1554,True,3.1313,0.0768,True,0.0762,Baseline (VIX)

@@ -1,0 +1,7 @@
+Test,Statistic,p_value
+Ljung-Box on z_t (Lag 10),18.2321,0.0512
+Ljung-Box on z_t (Lag 20),28.5907,0.0961
+Ljung-Box on z_t^2 (Lag 10),14.068,0.1699
+Ljung-Box on z_t^2 (Lag 20),17.1875,0.6408
+ARCH-LM on z_t (LM stat),13.3315,0.2057
+ARCH-LM on z_t (F stat),1.347,0.2067

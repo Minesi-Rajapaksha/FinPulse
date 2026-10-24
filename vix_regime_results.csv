@@ -1,0 +1,31 @@
+Model,Regime,Days,MAE,RMSE,QLIKE
+Naive,Low Volatility (VIX < 15),21,0.299,0.3641,9.4389
+Naive,Medium Volatility (15 <= VIX <= 25),206,0.599,0.8479,28.6775
+Naive,High Volatility / Panic (VIX > 25),20,1.9067,2.867,16.2065
+Baseline (Vol_21),Low Volatility (VIX < 15),21,0.2527,0.2964,-0.4751
+Baseline (Vol_21),Medium Volatility (15 <= VIX <= 25),206,0.5081,0.7773,0.9812
+Baseline (Vol_21),High Volatility / Panic (VIX > 25),20,1.4976,2.3513,3.5763
+Baseline (VIX),Low Volatility (VIX < 15),21,0.4119,0.469,0.0527
+Baseline (VIX),Medium Volatility (15 <= VIX <= 25),206,0.5389,0.7213,0.8696
+Baseline (VIX),High Volatility / Panic (VIX > 25),20,1.2206,1.9782,2.5407
+"GARCH(1,1)",Low Volatility (VIX < 15),21,0.2999,0.3437,-0.3076
+"GARCH(1,1)",Medium Volatility (15 <= VIX <= 25),206,0.4787,0.7121,0.8332
+"GARCH(1,1)",High Volatility / Panic (VIX > 25),20,1.4215,2.2414,3.1578
+TGARCH,Low Volatility (VIX < 15),21,0.2762,0.3154,-0.3969
+TGARCH,Medium Volatility (15 <= VIX <= 25),206,0.4394,0.6798,0.7427
+TGARCH,High Volatility / Panic (VIX > 25),20,1.2934,2.0898,2.793
+EGARCH,Low Volatility (VIX < 15),21,0.2907,0.339,-0.3364
+EGARCH,Medium Volatility (15 <= VIX <= 25),206,0.4377,0.6771,0.7184
+EGARCH,High Volatility / Panic (VIX > 25),20,1.2399,2.0986,2.9029
+HAR,Low Volatility (VIX < 15),21,0.3043,0.3394,-0.328
+HAR,Medium Volatility (15 <= VIX <= 25),206,0.4688,0.7205,0.9181
+HAR,High Volatility / Panic (VIX > 25),20,1.3658,2.2087,3.28
+Ridge,Low Volatility (VIX < 15),21,0.2458,0.2877,-0.5363
+Ridge,Medium Volatility (15 <= VIX <= 25),206,0.4398,0.6915,0.7973
+Ridge,High Volatility / Panic (VIX > 25),20,1.1889,1.8792,2.3967
+SVR,Low Volatility (VIX < 15),21,0.2137,0.2476,-0.7819
+SVR,Medium Volatility (15 <= VIX <= 25),206,0.4196,0.7234,7.4014
+SVR,High Volatility / Panic (VIX > 25),20,1.3002,2.3764,9.4058
+XGBoost,Low Volatility (VIX < 15),21,0.2282,0.2668,-0.5935
+XGBoost,Medium Volatility (15 <= VIX <= 25),206,0.4317,0.6971,0.8282
+XGBoost,High Volatility / Panic (VIX > 25),20,1.2412,2.2207,4.0634

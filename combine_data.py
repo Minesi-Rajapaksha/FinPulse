@@ -1,37 +1,36 @@
-import yfinance as yf
+import os
+import sys
 import pandas as pd
+import yfinance as yf
 
-# Download SPY
-spy = yf.download(
-    "SPY",
-    start="2021-01-01",
-    end="2026-01-01"
-)
+RAW_DATA_FILE = "FinPulse_Raw_Data.csv"
 
-# Download VIX
-vix = yf.download(
-    "^VIX",
-    start="2021-01-01",
-    end="2026-01-01"
-)
+def get_data(force_download=False):
+    if not force_download and os.path.exists(RAW_DATA_FILE):
+        print(f"Loading existing raw market dataset from '{RAW_DATA_FILE}'...")
+        data = pd.read_csv(RAW_DATA_FILE, index_col=0, parse_dates=True)
+        print(f"Loaded {len(data)} rows successfully. Pass --download to force re-fetch.")
+        return data
 
-# Remove the extra ticker level from the column names
-spy.columns = spy.columns.get_level_values(0)
-vix.columns = vix.columns.get_level_values(0)
+    print("Downloading historical SPY and ^VIX series from Yahoo Finance (2021-01-01 to 2026-01-01)...")
+    spy = yf.download("SPY", start="2021-01-01", end="2026-01-01", progress=False)
+    vix = yf.download("^VIX", start="2021-01-01", end="2026-01-01", progress=False)
 
-# Keep only VIX closing value
-vix_close = vix[["Close"]].copy()
+    if isinstance(spy.columns, pd.MultiIndex):
+        spy.columns = spy.columns.get_level_values(0)
+    if isinstance(vix.columns, pd.MultiIndex):
+        vix.columns = vix.columns.get_level_values(0)
 
-# Rename Close to VIX
-vix_close.columns = ["VIX"]
+    vix_close = vix[["Close"]].copy()
+    vix_close.columns = ["VIX"]
 
-# Combine using the Date index
-data = spy.join(vix_close, how="left")
+    data = spy.join(vix_close, how="left")
+    data.to_csv(RAW_DATA_FILE)
+    print(f"Downloaded and saved {len(data)} rows to '{RAW_DATA_FILE}'.")
+    return data
 
-print(data.head())
-print(data.tail())
-print(data.shape)
-print(data.columns)
-
-# Save
-data.to_csv("FinPulse_Raw_Data.csv")
+if __name__ == "__main__":
+    force = "--download" in sys.argv or "--force" in sys.argv
+    df = get_data(force_download=force)
+    print("Dataset dimensions:", df.shape)
+    print("Columns:", list(df.columns))
